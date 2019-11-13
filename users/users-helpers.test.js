@@ -13,10 +13,13 @@ describe("users helpers", ()=>{
         it("should fail when missing username and password", ()=>{
             //Arrange: Setup the World for the Test
             const invalidUser = { };
+            const expected = false;
+
             //Act: Execute the System Under Test (SUD) => validateUser method
-            const actual = validateUser(invalidUser)
+            const actual = validateUser(invalidUser);
+
             //Assert: We check the Result
-            expect(actual).toBe(expected) //Expect Methods / Matchers
+            expect(actual.isSuccessful).toBe(expected) //Expect Methods / Matchers
         })
     })
 })
