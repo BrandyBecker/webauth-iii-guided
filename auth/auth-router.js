@@ -8,11 +8,9 @@ const {validateUser} = require ('../users/users-helpers.js')
 router.post('/register', (req, res) => {
   let user = req.body;
   //always validate the data before sending it to the db
-  const validateResult = valudateUser(user);
+  const validateResult = validateUser(user);
 
   if(validateResult.isSuccessful === true){
-
- 
 
   const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
   user.password = hash;
@@ -24,9 +22,10 @@ router.post('/register', (req, res) => {
     .catch(error => {
       res.status(500).json(error);
     });
-    
+
   }else{
-    res.status(400).json({message: 'Invalid Info about the User'})
+    res.status(400).json({message: 'Invalid Info about the User. See errors for details',
+  errors: validateResult.errors})
   }
 });
 
