@@ -7,6 +7,13 @@ const {validateUser} = require ('../users/users-helpers.js')
 // for endpoints beginning with /api/auth
 router.post('/register', (req, res) => {
   let user = req.body;
+  //always validate the data before sending it to the db
+  const validateResult = valudateUser(user);
+
+  if(validateResult.isSuccessful === true){
+
+ 
+
   const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
   user.password = hash;
 
@@ -17,6 +24,10 @@ router.post('/register', (req, res) => {
     .catch(error => {
       res.status(500).json(error);
     });
+    
+  }else{
+    res.status(400).json({message: 'Invalid Info about the User'})
+  }
 });
 
 router.post('/login', (req, res) => {
