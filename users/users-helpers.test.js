@@ -21,5 +21,13 @@ describe("users helpers", ()=>{
             //Assert: We check the Result
             expect(actual.isSuccessful).toBe(expected) //Expect Methods / Matchers
         })
+        it('should fail if missing the password',()=>{
+            expect(validateUser({username: 'somebody' })).toBe(true)
+        })
+
+        it.todo('should fail if username is an object')
+        it.todo('should fail if username is an array')
+        it.todo('should fail if username is Not a Number')
+        it.todo('should fail if username is null')
     })
 })
