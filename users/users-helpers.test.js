@@ -7,3 +7,16 @@ const { validateUser } = require ('./users-helpers.js')
 // Sent an Obj with a Username less than 2 characters
 // Verified it Failed
 // Sent an obj with a Valid username, no password
+
+describe("users helpers", ()=>{
+    describe("validateUser()", ()=>{
+        it("should fail when missing username and password", ()=>{
+            //Arrange: Setup the World for the Test
+            const invalidUser = { };
+            //Act: Execute the System Under Test (SUD) => validateUser method
+            const actual = validateUser(invalidUser)
+            //Assert: We check the Result
+            expect(actual).toBe(expected) //Expect Methods / Matchers
+        })
+    })
+})
